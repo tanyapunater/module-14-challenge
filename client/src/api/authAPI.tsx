@@ -23,4 +23,25 @@ const login = async (userInfo: UserLogin) => {
   }
 };
 
-export { login };
+const logout = async () => {
+  // TODO: make a POST request to the logout route
+  try {
+    const response = await fetch("/api/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Logout failed, check network tab!");
+    }
+
+    return "Logout successful";
+  } catch (err) {
+    console.log("Error from user logout: ", err);
+    return Promise.reject("Could not log out user");
+  }
+};
+
+export { login, logout };
